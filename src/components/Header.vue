@@ -8,17 +8,12 @@
 <script>
 
 export default {
-    name: 'Header',
-    components: {
-        
-    }
+    name: 'Header'
 }
 
 </script>
 
 <style lang="scss">
-
-@import '../scss/_typography.scss';
 
 .header {
     height: 15vh;
