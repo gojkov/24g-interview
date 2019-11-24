@@ -62,11 +62,9 @@ import Vue from 'vue';
 import videos from '../videoList';
 import Footer from './Footer';
 import VueCookies from 'vue-cookies';
-//import JQuery from 'jquery';
 
 Vue.use(VueCookies);
 VueCookies.config('90d');
-//let $ = JQuery
 
 export default {
     name: 'Player',
@@ -199,7 +197,6 @@ export default {
                     img {
                         width: 168px;
                     }
-
                 }
             }
         }
