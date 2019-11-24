@@ -37,7 +37,7 @@ export default {
         text-transform: uppercase;
         color: $gray-light;
         font-size: 1.4rem;
-        letter-spacing: .2rem;
+        letter-spacing: .1em;
         margin-top: 2.6rem;
         margin-left: 1.2rem;
     }

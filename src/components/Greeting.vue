@@ -27,6 +27,7 @@ export default {
     p {
         //margin-left: 2.7rem;
         padding-left: 4rem;
+        letter-spacing: .02em;
 
         align-items: baseline;
         justify-content: flex-start;

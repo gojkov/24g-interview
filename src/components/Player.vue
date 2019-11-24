@@ -120,6 +120,7 @@ export default {
         h3 {
             font-family: 'Brandon Grotesque Medium';
             font-size: 1.2rem;
+            letter-spacing: .04em;
             color: $gray-midnight;
         }
 
@@ -189,8 +190,8 @@ export default {
                 display: inline-flex;
                 flex-direction: column;
                 justify-content: space-between;
-                margin-left: 2rem;
-                height: 360px;
+                margin-left: 2.5rem;
+                height: 364px;
 
                 .thumbnail {
                     display: flex;
