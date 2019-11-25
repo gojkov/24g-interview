@@ -81,7 +81,7 @@ export default {
     methods: {
         addView() {
             this.activeVideo.views += 1;
-            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '90d', '/');
+            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '90d', 'path=/', 'twentyfourg-interview.herokuapp.com');
             this.updateViews();
         },
         chooseVideo(video){
@@ -92,7 +92,7 @@ export default {
             //INCREASE LIKES BY 1 ON CLICK
             this.activeVideo.likes += 1;
             //SET COOKIE FOR LIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '90d', '/');
+            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '90d', 'path=/', 'twentyfourg-interview.herokuapp.com');
             //REFLECT LIKES UPDATE
             this.updateLikes();
         },
@@ -100,7 +100,7 @@ export default {
             //INCREASE DISLIKES BY 1 ON CLICK 
             this.activeVideo.dislikes +=1;
             //SET COOKIE FOR DISLIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '90d', '/');
+            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '90d', 'path=/', 'twentyfourg-interview.herokuapp.com');
             //REFLECT DISLIKES UPDATE
             this.updateDislikes();
         },
