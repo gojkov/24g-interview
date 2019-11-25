@@ -8,6 +8,7 @@
                     <video
                         id="selected-video"
                         controls
+                        autoplay
                         @ended="addView"
                         width="640" 
                         height="360" 
@@ -90,21 +91,18 @@ export default {
         addLike(){
             //INCREASE LIKES BY 1 ON CLICK
             this.activeVideo.likes += 1;
-            //CHECK FOR EXISTING COOKIE
-            if (this.$cookies.isKey(this.activeVideo.id) === false){
             //SET COOKIE FOR LIKES PER VIDEO
-                this.$cookies.set(this.activeVideo.id, this.activeVideo.likes);
-            }   
+            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes);
+            //REFLECT LIKES UPDATE
+            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id); 
         },
         addDislike(){
             //INCREASE DISLIKES BY 1 ON CLICK 
             this.activeVideo.dislikes +=1;
-            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes);
-
-            //CHECK FOR EXISTING COOKIE
-            if (this.$cookies.isKey(this.activeVideo.altId) === false){
             //SET COOKIE FOR DISLIKES PER VIDEO
-            }
+            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes);
+            //REFLECT DISLIKES UPDATE
+            this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId);
         },
         showStats(){
             this.activeVideo.views = this.$cookies.get(this.activeVideo.title);
