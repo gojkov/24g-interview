@@ -81,7 +81,7 @@ export default {
     methods: {
         addView() {
             this.activeVideo.views++;
-            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '90d', 'path=/');
+            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '90d', '/');
             this.updateViews();
         },
         chooseVideo(video){
@@ -92,7 +92,7 @@ export default {
             //INCREASE LIKES BY 1 ON CLICK
             this.activeVideo.likes++;
             //SET COOKIE FOR LIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '90d', 'path=/');
+            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '90d', '/');
             //REFLECT LIKES UPDATE
             this.updateLikes();
         },
@@ -100,14 +100,14 @@ export default {
             //INCREASE DISLIKES BY 1 ON CLICK 
             this.activeVideo.dislikes++;
             //SET COOKIE FOR DISLIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '90d', 'path=/');
+            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '90d', '/');
             //REFLECT DISLIKES UPDATE
             this.updateDislikes();
         },
         showStats(){
-            this.activeVideo.views = this.$cookies.get(this.activeVideo.title).parseInt();
-            this.activeVideo.likes = this.$cookies.get(this.activeVideo.id).parseInt();
-            this.activeVideo.dislikes = this.$cookies.get(this.activeVideo.altId).parseInt();
+            this.activeVideo.views === this.$cookies.get(this.activeVideo.title).parseInt();
+            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id).parseInt();
+            this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId).parseInt();
         },
         updateLikes(){
             this.activeVideo.likes === this.$cookies.get(this.activeVideo.id).parseInt();
@@ -120,7 +120,7 @@ export default {
         }
     },
     mounted() {
-        this.showStats()
+        
     }
 }
 
