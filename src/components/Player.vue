@@ -105,18 +105,18 @@ export default {
             this.updateDislikes();
         },
         showStats(){
-            this.activeVideo.views = this.$cookies.get(this.activeVideo.title);
-            this.activeVideo.likes = this.$cookies.get(this.activeVideo.id);
-            this.activeVideo.dislikes = this.$cookies.get(this.activeVideo.altId);
+            this.activeVideo.views = this.$cookies.get(this.activeVideo.title).parseInt();
+            this.activeVideo.likes = this.$cookies.get(this.activeVideo.id).parseInt();
+            this.activeVideo.dislikes = this.$cookies.get(this.activeVideo.altId).parseInt();
         },
         updateLikes(){
-            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id);
+            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id).parseInt();
         },
         updateDislikes(){
-            this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId);
+            this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId).parseInt();
         },
         updateViews(){
-            this.activeVideo.views === this.$cookies.get(this.activeVideo.title);
+            this.activeVideo.views === this.$cookies.get(this.activeVideo.title).parseInt();
         }
     },
     mounted() {
