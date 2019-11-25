@@ -101,6 +101,8 @@ export default {
             video.views = Number(this.$cookies.get(this.activeVideo.title));
             video.likes = Number(this.$cookies.get(this.activeVideo.id));
             video.dislikes = Number(this.$cookies.get(this.activeVideo.altId));
+            //ASSIGN ORANGE BORDER TO ACTIVE VIDEO IN LIST
+            
         },
         addLike(){
             //INCREASE LIKES BY 1 ON CLICK
