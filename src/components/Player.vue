@@ -80,7 +80,7 @@ export default {
     },
     methods: {
         addView() {
-            this.activeVideo.views += 1;
+            this.activeVideo.views++;
             this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '90d', 'path=/');
             this.updateViews();
         },
@@ -90,7 +90,7 @@ export default {
         },
         addLike(){
             //INCREASE LIKES BY 1 ON CLICK
-            this.activeVideo.likes += 1;
+            this.activeVideo.likes++;
             //SET COOKIE FOR LIKES PER VIDEO
             this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '90d', 'path=/');
             //REFLECT LIKES UPDATE
@@ -98,7 +98,7 @@ export default {
         },
         addDislike(){
             //INCREASE DISLIKES BY 1 ON CLICK 
-            this.activeVideo.dislikes +=1;
+            this.activeVideo.dislikes++;
             //SET COOKIE FOR DISLIKES PER VIDEO
             this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '90d', 'path=/');
             //REFLECT DISLIKES UPDATE
