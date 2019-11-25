@@ -81,8 +81,8 @@ export default {
     methods: {
         addView() {
             this.activeVideo.views += 1;
-            this.$cookies.set(this.activeVideo.title, this.activeVideo.views);
-            this.activeVideo.views === this.$cookies.get(this.activeVideo.title);
+            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '90d', '/');
+            this.updateViews();
         },
         chooseVideo(video){
             //SET VIDEO AS ACTIVE VIDEO
@@ -92,26 +92,32 @@ export default {
             //INCREASE LIKES BY 1 ON CLICK
             this.activeVideo.likes += 1;
             //SET COOKIE FOR LIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes);
+            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '90d', '/');
             //REFLECT LIKES UPDATE
-            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id); 
+            this.updateLikes();
         },
         addDislike(){
             //INCREASE DISLIKES BY 1 ON CLICK 
             this.activeVideo.dislikes +=1;
             //SET COOKIE FOR DISLIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes);
+            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '90d', '/');
             //REFLECT DISLIKES UPDATE
-            this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId);
+            this.updateDislikes();
         },
         showStats(){
             this.activeVideo.views = this.$cookies.get(this.activeVideo.title);
             this.activeVideo.likes = this.$cookies.get(this.activeVideo.id);
             this.activeVideo.dislikes = this.$cookies.get(this.activeVideo.altId);
+        },
+        updateLikes(){
+            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id);
+        },
+        updateDislikes(){
+            this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId);
+        },
+        updateViews(){
+            this.activeVideo.views === this.$cookies.get(this.activeVideo.title);
         }
-    },
-    mounted () {
-        this.showStats();
     }
 }
 
