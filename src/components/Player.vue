@@ -105,8 +105,13 @@ export default {
             this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId);
         },
         showStats(){
-            this.activeVideo.views = this.$cookies.get(this.activeVideo.title);
+            this.activeVideo.views === this.$cookies.get(this.activeVideo.title);
+            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id);
+            this.activeVideo.dislikes == this.$cookies.get(this.activeVideo.altId);
         }
+    },
+    mounted () {
+        this.showStats();
     }
 }
 
