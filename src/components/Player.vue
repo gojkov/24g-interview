@@ -79,10 +79,14 @@ export default {
     },
     methods: {
         addView() {
+            if (this.$cookies.isKey(this.activeVideo.title)){
+                this.activeVideo.views === this.$cookies.get(this.activeVideo.title) + 1;
+            } else {
+                this.activeVideo.views += 1;
+                this.$cookies.set(this.activeVideo.title, this.activeVideo.views);
+            }
             //INCREASE THE VIDEOS VIEWS BY 1 IF COMPLETE
-            this.activeVideo.views += 1;
             //SET COOKIE FOR VIEWS PER VIDEO
-            this.$cookies.set(this.activeVideo.title, this.activeVideo.views);
         },
         chooseVideo(video){
             //SET VIDEO AS ACTIVE VIDEO
@@ -91,14 +95,22 @@ export default {
         addLike(){
             //INCREASE LIKES BY 1 ON CLICK
             this.activeVideo.likes +=1;
+            //CHECK FOR EXISTING COOKIE
+            if (this.$cookies.isKey(this.activeVideo.id) === false){
             //SET COOKIE FOR LIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes);
+                this.$cookies.set(this.activeVideo.id, this.activeVideo.likes);
+            }   
         },
         addDislike(){
             //INCREASE DISLIKES BY 1 ON CLICK 
             this.activeVideo.dislikes +=1;
-            //SET COOKIE FOR DISLIKES PER VIDEO
             this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes);
+
+            //CHECK FOR EXISTING COOKIE
+            if (this.$cookies.isKey(this.activeVideo.altId) === false){
+            //SET COOKIE FOR DISLIKES PER VIDEO
+            }
+            
         }
     }
 }
