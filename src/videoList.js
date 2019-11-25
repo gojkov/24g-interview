@@ -7,7 +7,8 @@ const videos = [
         videoUrl: 'https://static-email-hosting.s3.amazonaws.com/24G_Test_Project/videos/who_is_24g.mp4',
         views: 0,
         likes: 0,
-        dislikes: 0
+        dislikes: 0,
+        isActive: true
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ const videos = [
         videoUrl: 'https://static-email-hosting.s3.amazonaws.com/24G_Test_Project/videos/ces_overview.mp4',
         views: 0,
         likes: 0,
-        dislikes: 0
+        dislikes: 0,
+        isActive: false
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ const videos = [
         videoUrl: 'https://static-email-hosting.s3.amazonaws.com/24G_Test_Project/videos/future_of_drones.mp4',
         views: 0,
         likes: 0,
-        dislikes: 0
+        dislikes: 0,
+        isActive: false
     }
 ]
 

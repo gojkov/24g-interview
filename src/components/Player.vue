@@ -1,5 +1,4 @@
 <template>
-
     <div class="container-large">
         <div class="video-player"> 
             <h3>{{ this.activeVideo.title }}</h3>
@@ -40,22 +39,24 @@
                 <div class="video-list">
                     <div 
                         @click="chooseVideo(video)" 
-                        :key="video.id" 
                         v-for="video in videos"
+                        :key="video.id"
+                        :class="{ orangeBorder : activeVideo }"
                         class="thumbnail">
 
-                    <div class="thumbnail-img">
-                        <img 
-                            :src="video.thumbnail"
-                             />
+                        <div class="thumbnail-img">
+                            <img 
+                                :src="video.thumbnail"
+                                />
+                        </div>
+                        
                     </div>
-                </div>
                </div>
             </div>
+
             <Footer />
         </div>
     </div>
-
 </template>
 
 <script>
@@ -65,7 +66,6 @@ import Footer from './Footer';
 import VueCookies from 'vue-cookies';
 
 Vue.use(VueCookies);
-VueCookies.config('90d');
 
 export default {
     name: 'Player',
@@ -75,50 +75,53 @@ export default {
     data () {
         return {
             videos,
-            activeVideo: videos[0]
+            activeVideo: videos[0],
+            orangeBorder: {
+                color: "#FAA61A",
+                border: "4px solid"
+            },
+            noBorder: {
+                border: "none"
+            }
         }
     },
     methods: {
         addView() {
+            //INCREASE VIEWS BY 1 ON CLICK
             this.activeVideo.views++;
-            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '90d', '/');
-            this.updateViews();
+            //SET COOKIE FOR VIEWS PER VIDEO
+            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '30d', '/');
+            //REFLECT VIEWS UPDATE
+            this.activeVideo.views == Number(this.$cookies.get(this.activeVideo.title));
         },
         chooseVideo(video){
             //SET VIDEO AS ACTIVE VIDEO
             this.activeVideo = video;
+            //GET COOKIE VALUES AND REFLECT IN VIEWS, LIKES, DISLIKES
+            video.views = Number(this.$cookies.get(this.activeVideo.title));
+            video.likes = Number(this.$cookies.get(this.activeVideo.id));
+            video.dislikes = Number(this.$cookies.get(this.activeVideo.altId));
         },
         addLike(){
             //INCREASE LIKES BY 1 ON CLICK
             this.activeVideo.likes++;
             //SET COOKIE FOR LIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '90d', '/');
+            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '30d', '/');
             //REFLECT LIKES UPDATE
-            this.updateLikes();
+            this.activeVideo.likes == Number(this.$cookies.get(this.activeVideo.id));
         },
         addDislike(){
             //INCREASE DISLIKES BY 1 ON CLICK 
             this.activeVideo.dislikes++;
             //SET COOKIE FOR DISLIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '90d', '/');
+            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '30d', '/');
             //REFLECT DISLIKES UPDATE
-            this.updateDislikes();
+            this.activeVideo.dislikes == Number(this.$cookies.get(this.activeVideo.altId));
         },
         showStats(){
-            if (this.$cookies.isKey(this.activeVideo.views) && this.$cookies.isKey(this.activeVideo.likes) && this.$cookies.isKey(this.activeVideo.dislikes)){
-                this.activeVideo.views === this.$cookies.get(this.activeVideo.title).parseInt();
-                this.activeVideo.likes === this.$cookies.get(this.activeVideo.id).parseInt();
-                this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId).parseInt();
-            }
-        },
-        updateLikes(){
-            this.activeVideo.likes === this.$cookies.get(this.activeVideo.id).parseInt();
-        },
-        updateDislikes(){
-            this.activeVideo.dislikes === this.$cookies.get(this.activeVideo.altId).parseInt();
-        },
-        updateViews(){
-            this.activeVideo.views === this.$cookies.get(this.activeVideo.title).parseInt();
+                this.activeVideo.views = Number(this.$cookies.get(this.activeVideo.title));
+                this.activeVideo.likes = Number(this.$cookies.get(this.activeVideo.id));
+                this.activeVideo.dislikes = Number(this.$cookies.get(this.activeVideo.altId));
         }
     },
     mounted() {
@@ -157,7 +160,7 @@ export default {
                     border: 4px solid $orange-light;
                 }
 
-                .no-border {
+                .noBorder {
                     border: none;
                 }
                 
