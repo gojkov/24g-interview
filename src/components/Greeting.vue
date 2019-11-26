@@ -5,12 +5,14 @@
 </template>
 
 <script>
+
 export default {
     name: 'Greeting',
     props: {
         user: String
     }
 }
+
 </script>
 
 <style scoped lang="scss">

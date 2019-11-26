@@ -61,12 +61,12 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import videos from '../videoList';
-import Footer from './Footer';
-import VueCookies from 'vue-cookies';
+import Vue from 'vue'
+import videos from '../videoList'
+import Footer from './Footer'
+import VueCookies from 'vue-cookies'
 
-Vue.use(VueCookies);
+Vue.use(VueCookies)
 
 export default {
     name: 'Player',
@@ -82,45 +82,44 @@ export default {
     methods: {
         addView() {
             //INCREASE VIEWS BY 1 ON CLICK
-            this.activeVideo.views++;
+            this.activeVideo.views++
             //SET COOKIE FOR VIEWS PER VIDEO
-            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '30d', '/');
+            this.$cookies.set(this.activeVideo.title, this.activeVideo.views, '30d', '/')
             //REFLECT VIEWS UPDATE
-            this.activeVideo.views == Number(this.$cookies.get(this.activeVideo.title));
+            this.activeVideo.views == Number(this.$cookies.get(this.activeVideo.title))
         },
         chooseVideo(video){
             //SET VIDEO AS ACTIVE VIDEO
-            this.activeVideo = video;
+            this.activeVideo = video
             //GET COOKIE VALUES AND REFLECT IN VIEWS, LIKES, DISLIKES
-            video.views = Number(this.$cookies.get(this.activeVideo.title));
-            video.likes = Number(this.$cookies.get(this.activeVideo.id));
-            video.dislikes = Number(this.$cookies.get(this.activeVideo.altId));
-            //ASSIGN ORANGE BORDER TO ACTIVE VIDEO IN LIST
+            video.views = Number(this.$cookies.get(this.activeVideo.title))
+            video.likes = Number(this.$cookies.get(this.activeVideo.id))
+            video.dislikes = Number(this.$cookies.get(this.activeVideo.altId))
         },
         addLike(){
             //INCREASE LIKES BY 1 ON CLICK
-            this.activeVideo.likes++;
+            this.activeVideo.likes++
             //SET COOKIE FOR LIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '30d', '/');
+            this.$cookies.set(this.activeVideo.id, this.activeVideo.likes, '30d', '/')
             //REFLECT LIKES UPDATE
-            this.activeVideo.likes == Number(this.$cookies.get(this.activeVideo.id));
+            this.activeVideo.likes == Number(this.$cookies.get(this.activeVideo.id))
         },
         addDislike(){
             //INCREASE DISLIKES BY 1 ON CLICK 
-            this.activeVideo.dislikes++;
+            this.activeVideo.dislikes++
             //SET COOKIE FOR DISLIKES PER VIDEO
-            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '30d', '/');
+            this.$cookies.set(this.activeVideo.altId, this.activeVideo.dislikes, '30d', '/')
             //REFLECT DISLIKES UPDATE
-            this.activeVideo.dislikes == Number(this.$cookies.get(this.activeVideo.altId));
+            this.activeVideo.dislikes == Number(this.$cookies.get(this.activeVideo.altId))
         },
         showStats(){
-                this.activeVideo.views = Number(this.$cookies.get(this.activeVideo.title));
-                this.activeVideo.likes = Number(this.$cookies.get(this.activeVideo.id));
-                this.activeVideo.dislikes = Number(this.$cookies.get(this.activeVideo.altId));
+            this.activeVideo.views = Number(this.$cookies.get(this.activeVideo.title))
+            this.activeVideo.likes = Number(this.$cookies.get(this.activeVideo.id))
+            this.activeVideo.dislikes = Number(this.$cookies.get(this.activeVideo.altId))
         }
     },
     mounted() {
-        this.showStats();
+        this.showStats()
     }
 }
 

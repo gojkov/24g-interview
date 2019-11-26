@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 import Greeting from './components/Greeting.vue'
 import Header from './components/Header.vue'
 import Player from './components/Player.vue'
@@ -21,6 +22,7 @@ export default {
     Player
   }
 }
+
 </script>
 
 <style lang="scss">
