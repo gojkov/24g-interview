@@ -41,11 +41,12 @@
                         @click="chooseVideo(video)" 
                         v-for="video in videos"
                         :key="video.id"
-                        :class="{ orangeBorder : activeVideo }"
                         class="thumbnail">
 
-                        <div class="thumbnail-img">
-                            <img 
+                        <div 
+                            class="thumbnail-img">
+                            <img
+                                :style="[video === activeVideo ? {border: '4px solid #FAA61A'} : {padding: '2px'}]"
                                 :src="video.thumbnail"
                                 />
                         </div>
@@ -75,14 +76,7 @@ export default {
     data () {
         return {
             videos,
-            activeVideo: videos[0],
-            orangeBorder: {
-                color: "#FAA61A",
-                border: "4px solid"
-            },
-            noBorder: {
-                border: "none"
-            }
+            activeVideo: videos[0]
         }
     },
     methods: {
@@ -102,7 +96,6 @@ export default {
             video.likes = Number(this.$cookies.get(this.activeVideo.id));
             video.dislikes = Number(this.$cookies.get(this.activeVideo.altId));
             //ASSIGN ORANGE BORDER TO ACTIVE VIDEO IN LIST
-            
         },
         addLike(){
             //INCREASE LIKES BY 1 ON CLICK

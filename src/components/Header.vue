@@ -33,7 +33,7 @@ export default {
         color: $gray-light;
         font-size: 1.4rem;
         letter-spacing: .1em;
-        margin-top: 2.6rem;
+        margin-top: 2.5rem;
         margin-left: 1.2rem;
     }
 }
