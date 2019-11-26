@@ -1,7 +1,10 @@
 <template>
-    <div class="greeting">
-        <p>Welcome, <span>{{ user }}</span></p>
-    </div>
+    <b-container>
+        <!-- As a heading -->
+        <b-navbar tag="div" class="greeting w-100 mb-0">
+            <b-navbar-brand tag="p">Welcome, <span>{{ user}}</span></b-navbar-brand>
+        </b-navbar>
+    </b-container>
 </template>
 
 <script>
@@ -15,7 +18,7 @@ export default {
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
 .greeting {
     display: flex;
@@ -23,17 +26,13 @@ export default {
     font-size: 1.1rem;
     background: $blue-light;
     height: 5vh;
-    width: 100%;
+    padding-left: 4rem;
+    align-items: center;
+    
     color: $gray-light;
 
     p {
-        //margin-left: 2.7rem;
-        padding-left: 4rem;
         letter-spacing: .02em;
-
-        align-items: baseline;
-        justify-content: flex-start;
-        align-self: center;
     }
 
     span {

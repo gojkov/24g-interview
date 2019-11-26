@@ -1,10 +1,22 @@
 <template>
   <div id="app">
-    <div class="top-section">
-        <Greeting user="Steve" />
-        <Header />
-    </div>
-    <Player />
+    <b-container fluid>
+
+      <b-row>
+        <b-col cols="12">
+          <Greeting user="Steve" />
+          <Header />
+        </b-col>
+      </b-row>
+      
+      <b-row>
+        <b-col cols="12">
+          <Player />
+        </b-col>
+      </b-row>
+     
+    </b-container>
+    
   </div>
 </template>
 
@@ -36,13 +48,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  font-family: 'Brandon Grotesque Light', sans-serif;
+  font-family: 'Brandon Grotesque Medium', sans-serif;
   font-size: 10px;
 
-}
-
-.top-section {
-  justify-content: left;
 }
 
 </style>

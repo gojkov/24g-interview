@@ -1,26 +1,28 @@
 <template>
-    <div class="container-large">
-        <div class="video-player"> 
+    <b-container fluid class="container-large">
+        <b-container fluid class="video-player"> 
             <h3>{{ this.activeVideo.title }}</h3>
-            <div class="video-container">
-                <div class="core-area">
-                    <video
-                        id="selected-video"
-                        controls
-                        autoplay
-                        @ended="addView"
-                        width="640" 
-                        height="360" 
-                        :src="this.activeVideo.videoUrl" 
-                        frameborder="0" 
-                        allow="encrypted-media" 
-                        allowfullscreen
-                    ></video>
-
-                    <div class="video-stats">
+            <b-container fluid class="video-container">
+                <b-container fluid class="core-area">
+                    <b-embed type="video" aspect="16by9">
+                        <video
+                            id="selected-video"
+                            controls
+                            autoplay
+                            width="640"
+                            height="360"
+                            @ended="addView" 
+                            :src="this.activeVideo.videoUrl" 
+                            frameborder="0" 
+                            allow="encrypted-media" 
+                            allowfullscreen
+                        ></video>
+                    </b-embed>
+                            
+                    <b-container fluid class="video-stats">
                         <h6>{{ this.activeVideo.views }} views</h6>
 
-                        <div class="feedback">
+                        <b-container fluid class="feedback">
                             <div class="like-count">
                                 <img @click="addLike" src="../assets/svg/thumbs_up.svg" alt="Likes" id="likeBtn">
                                 <span> {{ this.activeVideo.likes }}</span>
@@ -30,34 +32,32 @@
                                 <img @click="addDislike" src="../assets/svg/thumbs_down.svg" alt="Dislikes" id="dislikeBtn">
                                 <span> {{ this.activeVideo.dislikes }}</span>
                             </div>
-                        </div>
-                    </div>
+                        </b-container>
+                    </b-container>
+            
+                    <div fluid class="accent-line" />
+                </b-container>
+                        <div class="video-list">
+                            <div 
+                                @click="chooseVideo(video)" 
+                                v-for="video in videos"
+                                :key="video.id"
+                                class="thumbnail">
 
-                    <div class="accent-line" />
-                </div>
-                
-                <div class="video-list">
-                    <div 
-                        @click="chooseVideo(video)" 
-                        v-for="video in videos"
-                        :key="video.id"
-                        class="thumbnail">
-
-                        <div 
-                            class="thumbnail-img">
-                            <img
-                                :style="[video === activeVideo ? {border: '4px solid #FAA61A'} : {padding: '2px'}]"
-                                :src="video.thumbnail"
-                                />
-                        </div>
-                        
-                    </div>
-               </div>
-            </div>
+                                <div class="thumbnail-img">
+                                    <img
+                                    :style="[video === activeVideo ? {border: '4px solid #FAA61A'} : {padding: '2px'}]"
+                                    :src="video.thumbnail"
+                                    />
+                                </div>  
+                            </div>                   
+                    </div>  
+            </b-container>
 
             <Footer />
-        </div>
-    </div>
+
+        </b-container>
+    </b-container>
 </template>
 
 <script>
@@ -113,12 +113,14 @@ export default {
             this.activeVideo.dislikes == Number(this.$cookies.get(this.activeVideo.altId))
         },
         showStats(){
+            // GATHER USER STATS FOR APP MOUNT
             this.activeVideo.views = Number(this.$cookies.get(this.activeVideo.title))
             this.activeVideo.likes = Number(this.$cookies.get(this.activeVideo.id))
             this.activeVideo.dislikes = Number(this.$cookies.get(this.activeVideo.altId))
         }
     },
     mounted() {
+        // MOUNT EXISTING STATS
         this.showStats()
     }
 }
@@ -126,7 +128,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .container-large {
     display: block;
     width: 100%;
@@ -137,11 +138,11 @@ export default {
 
         h3 {
             font-family: 'Brandon Grotesque Medium';
+            font-weight: 600;
             font-size: 1.2rem;
             letter-spacing: .04em;
             color: $gray-midnight;
         }
-
         .video-container {
             display: flex;
             flex-direction: row;
@@ -149,26 +150,23 @@ export default {
 
             .core-area {
                 width: 640px;
-
-                .orangeBorder {
-                    border: 4px solid $orange-light;
-                }
-
-                .noBorder {
-                    border: none;
-                }
                 
                 .video-stats {
                     display: flex;
                     flex-direction: row;
                     vertical-align: baseline;
                     justify-content: space-between;
-                    font-family: 'Brandon Grotesque Regular';
+                    font-family: 'Brandon Grotesque Medium';
                     margin-top: .4rem;
                     font-size: 1.7rem;
 
+                    h6 {
+                        margin-top: .5rem;
+                        font-weight: 600;
+                    }
+
                     img {
-                        width: 1.15rem;
+                        width: .9rem;
                     }
 
                     span {
@@ -185,13 +183,24 @@ export default {
                         vertical-align: baseline;
 
                         span {
+                            font-size: 1rem;
                             padding-left: .4rem;
+                            padding-top: .4rem;
                         }
 
                         .like-count,
                         .dislike-count {
                             display: flex;
-                            font-size: 1.5rem;
+                            font-size: 1rem;
+                        }
+
+                        #likeBtn,
+                        #dislikeBtn {
+
+                            &:hover {
+                                transform: scale(1.2);
+                                transition: all .2s;
+                            }
                         }
                     }
                 }
@@ -209,18 +218,19 @@ export default {
                 flex-direction: column;
                 justify-content: space-between;
                 margin-left: 2.5rem;
-                height: 364px;
+                height: 362px;
+                width: 168px;
 
                 .thumbnail {
                     display: flex;
 
-                    img {
-                        width: 168px;
-                    }
+                        img {
+                            width: 168px;
+                        }
+                    
                 }
             }
         }
     }
 }
-
 </style>
