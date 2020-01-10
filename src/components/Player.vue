@@ -8,7 +8,6 @@
                         <video
                             id="selected-video"
                             controls
-                            autoplay
                             width="640"
                             height="360"
                             @ended="addView" 
@@ -19,7 +18,7 @@
                         ></video>
                     </b-embed>
                             
-                    <b-container fluid class="video-stats">
+                    <b-container tag="div" fluid class="video-stats">
                         <h6>{{ this.activeVideo.views }} views</h6>
 
                         <b-container fluid class="feedback">
@@ -33,7 +32,7 @@
                                 <span> {{ this.activeVideo.dislikes }}</span>
                             </div>
                         </b-container>
-                    </b-container>
+                    </b-container>  
             
                     <div fluid class="accent-line" />
                 </b-container>
