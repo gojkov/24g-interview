@@ -16,7 +16,7 @@
     "core-js": "^3.3.2",
     "express": "^4.17.1",
     "fibers": "^4.0.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "vue": "^2.6.10",
     "vue-cookies": "^1.5.13"
   },
